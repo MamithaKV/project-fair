@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import projectImg from '../assets/projectImg.webp'
 import ProjectCard from '../components/ProjectCard'
 import { Card } from 'react-bootstrap'
+import Header from '../components/Header'
 
 
 const Home = () => {
   return (
    <>
+   <Header/>
       <div  style={{minHeight:'100vh'}}className="d-flex justify-content-center align-items-center rounded shadow w-100">
         <div className="container">
           <div className="row align-items-center">

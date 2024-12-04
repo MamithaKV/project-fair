@@ -7,13 +7,13 @@ import Auth from './pages/Auth'
 import Projects from './pages/Projects'
 import  Pnf from './pages/Pnf'
 import Footer from './components/Footer'
-import Header from './components/Header'
+// import Header from './components/Header'
 
 function App() {
 
   return (
     <>
-    <Header/>
+    
     <Routes>
       <Route  path='/' element={<Home/>}/>
       <Route  path='/login' element={<Auth/>}/>
