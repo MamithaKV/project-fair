@@ -1,8 +1,9 @@
 import React ,{useState} from 'react'
 import { Card ,Modal} from 'react-bootstrap'
+import SERVER_BASE_URL from '../services/serverUrl';
 
 
-const ProjectCard = () => {
+const ProjectCard = ({displayData}) => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -10,31 +11,31 @@ const ProjectCard = () => {
   return (
     <>
      <Card onClick={handleShow} className='btn shadow'>
-      <Card.Img height={'200px'} variant="top" src="https://thumbs.dreamstime.com/b/projects-concept-black-chalkboard-d-rendering-handwritten-top-view-office-desk-lot-business-office-supplies-79906734.jpg" />
+      <Card.Img height={'200px'} variant="top" src={`${SERVER_BASE_URL}/uploads/${displayData?.projectImage}`} />
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title>{displayData?.title}</Card.Title>
        
       </Card.Body>
     </Card>
     <Modal size='lg' centered show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Project Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
          
             <div className='row'>
               <div className='col-lg-6'>
-                <img className='img-fluid' src="https://www.liquidplanner.com/wp-content/uploads/2019/04/HiRes-17.jpg" alt="" />
+                <img className='img-fluid' src={`${SERVER_BASE_URL}/uploads/${displayData?.projectImage}`} alt="" />
               </div>
               <div className='col-lg-6'>
                 <h3>Title</h3>
-                <h6>Languages used : <span className='text-danger'> language</span></h6>
-                <p style={{textAlign:'justify'}}> <span className='fw-bolder'>projct overview : </span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, eveniet, ipsam excepturi recusandae, aliquam voluptatem quia impedit nisi quo ut facilis blanditiis possimus repellendus provident ea harum? Pariatur, in sed.</p>
+                <h6>Languages used : <span className='text-danger'> {displayData?.languages}</span></h6>
+                <p style={{textAlign:'justify'}}> <span className='fw-bolder'>project overview : </span>{displayData?.overview}</p>
               </div>
             </div>
             <div className='mt-2 float-start'>
-              <a href="https://github.com/MamithaKV/e-cart.git"target='_blank' className='btn btn-secondary me-2'><i className='fa-brands fa-github'></i></a>
-              <a href="https://e-cart-gilt.vercel.app/" target='_blank' className='btn btn-secondary'><i className='fa-solid fa-link'></i></a>
+              <a href={displayData?.github}target='_blank' className='btn btn-secondary me-2'><i className='fa-brands fa-github'></i></a>
+              <a href={displayData?.website} target='_blank' className='btn btn-secondary'><i className='fa-solid fa-link'></i></a>
             </div>
           
         </Modal.Body>
