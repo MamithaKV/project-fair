@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import loginimg from '../assets/loginimg.jpg'
 import { FloatingLabel, Form,Spinner } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginAPI, registerAPI } from '../services/allAPI'
+import { tokenContext } from '../../contexts/TokenAuth'
 
 
 const Auth = ({insideRegister}) => {
+ const {authorisedUser,setAuthorisedUser}=useContext(tokenContext)
   const[isLogin,setIsLogin]=useState(false)
   const navigate = useNavigate()
   const [userInput,setUserInput] = useState({
@@ -47,6 +49,7 @@ const Auth = ({insideRegister}) => {
        sessionStorage.setItem("user",JSON.stringify(result.data.user))
        sessionStorage.setItem("token",result.data.token)
        setIsLogin(true)
+       setAuthorisedUser(true)
       //  waiting time
       setTimeout(() => {
         navigate("/")
